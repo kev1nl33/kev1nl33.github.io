@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+:root {
+    --gold-primary: #FFD700;
+    --gold-secondary: #FFC107;
+    --gold-dark: #B8860B;
+    --gold-light: #FFECB3;
+    --dark-bg: #1A1A1A;
+    --text-color: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #000000, #2C2C2C);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+    border: 2px solid var(--gold-primary);
+    position: relative;
+    z-index: 10;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, var(--gold-primary), transparent, var(--gold-primary), transparent);
+    z-index: -1;
+    border-radius: 25px;
+    animation: border-glow 3s linear infinite;
+}
+
+@keyframes border-glow {
+    0% {
+        filter: blur(5px);
+        opacity: 0.5;
+    }
+    50% {
+        filter: blur(10px);
+        opacity: 0.8;
+    }
+    100% {
+        filter: blur(5px);
+        opacity: 0.5;
+    }
+}
+
+h1 {
+    text-align: center;
+    color: var(--gold-primary);
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+    letter-spacing: 2px;
+}
+
+.input-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+    color: var(--gold-light);
+    font-weight: bold;
+}
+
+input {
+    padding: 12px 15px;
+    border: 2px solid var(--gold-dark);
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--gold-primary);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+button {
+    grid-column: 1 / -1;
+    padding: 15px;
+    background: linear-gradient(45deg, var(--gold-dark), var(--gold-primary), var(--gold-dark));
+    border: none;
+    border-radius: 8px;
+    color: #000;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    background-position: right center;
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+.result-section {
+    display: none;
+    text-align: center;
+    padding: 30px 0;
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.money-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.money-icon {
+    font-size: 3rem;
+    color: var(--gold-primary);
+    margin-right: 10px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+}
+
+#money-counter {
+    font-size: 4rem;
+    font-weight: bold;
+    color: var(--gold-primary);
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+    transition: all 0.3s ease;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.stat-item {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--gold-dark);
+    border-radius: 10px;
+    padding: 15px;
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--gold-light);
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--gold-primary);
+}
+
+/* Coin animation styles */
+.coin {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="%23FFD700" stroke="%23B8860B" stroke-width="2"/><text x="50" y="65" font-family="Arial" font-size="50" font-weight="bold" text-anchor="middle" fill="%23B8860B">¥</text></svg>') no-repeat center/contain;
+    z-index: 100;
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.8));
+    transform-origin: center center;
+}
+
+/* 爆金币特效 */
+.coin-explosion {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+@keyframes coinFall {
+    0% {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(calc(100vh + 50px)) rotate(360deg);
+        opacity: 0.7;
+    }
+}
+
+@keyframes coinExplosion {
+    0% {
+        transform: translate(-50%, -50%) scale(0.3) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(calc(-50% + var(--x-end)), calc(-50% + var(--y-end))) scale(1) rotate(var(--rotation));
+        opacity: 0;
+    }
+}
+
+@keyframes goldLight {
+    0% {
+        box-shadow: 0 0 30px 10px rgba(255, 215, 0, 0.8);
+    }
+    50% {
+        box-shadow: 0 0 50px 15px rgba(255, 215, 0, 0.9);
+    }
+    100% {
+        box-shadow: 0 0 30px 10px rgba(255, 215, 0, 0.8);
+    }
+}
+
+.gold-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
+    z-index: 90;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gold-flash.active {
+    opacity: 1;
+    animation: goldFlash 0.8s ease-out;
+}
+
+@keyframes goldFlash {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 0.5s ease;
+}
+
+.money-milestone {
+    position: fixed;
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--gold-primary);
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(0);
+    animation: milestoneAnim 1.5s ease-out forwards;
+}
+
+@keyframes milestoneAnim {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8);
+    }
+    20% {
+        opacity: 1;
+        transform: translateY(-20px) scale(1.2);
+    }
+    80% {
+        opacity: 1;
+        transform: translateY(-30px) scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50px) scale(1);
+    }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .stats {
+        grid-template-columns: 1fr;
+    }
+    
+    #money-counter {
+        font-size: 3rem;
+    }
+}
